@@ -12,7 +12,7 @@
 //     - Given C = [2,5], M = 1, X = -1
 
 
-function fewest_coins(coins, amount, memo = {}) {
+function fewest_coins_helper(coins, amount, memo = {}) {
     if (amount in memo) return memo[amount];
     if (amount === 0) return 0;
 
@@ -20,7 +20,7 @@ function fewest_coins(coins, amount, memo = {}) {
     
     coins.forEach(coin => {
         if (coin <= amount) {
-            num_coins.push(fewest_coins(coins, amount - coin, memo) + 1);
+            num_coins.push(fewest_coins_helper(coins, amount - coin, memo) + 1);
         };
     });
     
@@ -28,8 +28,8 @@ function fewest_coins(coins, amount, memo = {}) {
     return memo[amount];
 }
 
-function coin_ans(coins, amount) {
-    let ans = fewest_coins(coins, amount);
+function fewest_coins(coins, amount) {
+    let ans = fewest_coins_helper(coins, amount);
     
     if (ans === Infinity) {
         return -1;
@@ -38,4 +38,4 @@ function coin_ans(coins, amount) {
     };
 };
 
-console.log(coin_ans([2, 5], 3));
+console.log(fewest_coins([1, 2, 7], 13));
