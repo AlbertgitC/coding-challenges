@@ -21,7 +21,6 @@ function fewest_coins(coins, amount) {
             num_coins.push(fewest_coins(coins, amount - coin) + 1);
         };
     });
-
     
     return Math.min(...num_coins);
 }
