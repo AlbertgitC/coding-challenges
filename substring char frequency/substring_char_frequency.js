@@ -13,8 +13,17 @@
 
 
 function freq_count(string, char, start_idx, end_idx) {
-    
+    let counter = 0;
+
+    for (let i = start_idx; i <= end_idx; i++) {
+        if (string.charAt(i) === char) counter++;
+    };
+
+    return counter;
 }
+
+console.log(freq_count("codingchallenge", "g", 0, 5));
+console.log(freq_count("codingchallenge", "g", 0, 13));
 
 // Assume you need the capability to scale out. You will have to search the same list, or string many times for 
 // different character frequencies within a substring. If you were allowed to pre-process the string into a data
