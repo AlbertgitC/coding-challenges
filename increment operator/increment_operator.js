@@ -6,5 +6,23 @@
 
 
 function array_increment(num_arr) {
-   
+    let current_digi = num_arr.length - 1;
+
+    if (num_arr[current_digi] != 9) {
+        num_arr[current_digi]++;
+    } else {
+        while (num_arr[current_digi] === 9) {
+            num_arr[current_digi] = 0;
+            current_digi--;
+            if (num_arr[current_digi] != 9 && current_digi >= 0) {
+                num_arr[current_digi]++;
+            } else if (current_digi < 0) {
+                num_arr.unshift(1);
+            };
+        };
+    };
 }
+
+let arr = [9,9,9];
+array_increment(arr);
+console.log(arr);
