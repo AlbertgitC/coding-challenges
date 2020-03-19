@@ -41,18 +41,35 @@ function freq_count(string, char, start_idx, end_idx) {
 function process_string(string) {
     const alph = "abcdefghijklmnopqrstuvwxyz";
     let hash_table = {};
-    
+
     for (let i = 0; i < string.length; i++) {
         let char = alph.indexOf(string[i]);
         if (i === 0) {
             hash_table[i] = new Array(26).fill(0);
             hash_table[i][char]++;
         } else {
-            hash_table[i] = hash_table[i - 1];
+            hash_table[i] = hash_table[i - 1].slice(0);
             hash_table[i][char]++;
         };
     };
     return hash_table;
 };
 
-console.log(process_string("codingchallenge"));
+
+function freq_count2(processed_str, char, start_idx, end_idx) {
+    const alph = "abcdefghijklmnopqrstuvwxyz";
+    const char_idx = alph.indexOf(char);
+    if (start_idx === 0) {
+        return processed_str[end_idx][char_idx];
+    } else {
+        const substring = processed_str[end_idx].map((count, idx) => {
+            return count - processed_str[start_idx - 1][idx];
+        });
+        return substring[char_idx];
+    };
+}
+
+const processed_str = process_string("codingchallenge");
+console.log(freq_count2(processed_str, "c", 0, 5));
+console.log(freq_count2(processed_str, "c", 0, 13));
+console.log(freq_count2(processed_str, "c", 4, 5));
