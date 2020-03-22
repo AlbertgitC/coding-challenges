@@ -23,6 +23,18 @@ function array_increment(num_arr) {
     };
 }
 
-let arr = [9,9,9];
-array_increment(arr);
-console.log(arr);
+// let arr = [9,9,9];
+// array_increment(arr);
+// console.log(arr);
+
+
+// Follow-Up: ArraySum
+// Given two arrays of integers representing numbers, implement the sum 
+// operation such that
+// arraySum([1,2], [2,3]) => [3,5] // because 12 + 23 = 35
+// arraySum([1,9,9], [9,0,0]) => [1,0,9,9] // 199 + 900 = 1099
+// arraySum([9,1,1], [9,9]) => [1,0,1,0] // 911 + 99 = 1010
+
+function array_sum(arr1, arr2) {
+
+}
