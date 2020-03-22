@@ -36,5 +36,28 @@ function array_increment(num_arr) {
 // arraySum([9,1,1], [9,9]) => [1,0,1,0] // 911 + 99 = 1010
 
 function array_sum(arr1, arr2) {
+    let i = arr1.length - 1;
+    let j = arr2.length - 1;
+    let carry = false;
+    let ans = [];
 
+    while (i >= 0 || j >= 0) {
+        let digit1 = arr1[i] >= 0 ? arr1[i] : 0;
+        let digit2 = arr2[j] >= 0 ? arr2[j] : 0;
+        let sum = digit1 + digit2;
+
+        if (carry) { sum += 1 };
+
+        ans.unshift(sum % 10);
+        carry = sum > 9 ? true : false;
+
+        i--;
+        j--;
+    };
+
+    if (carry) { ans.unshift(1) };
+
+    return ans;
 }
+
+console.log(array_sum([9, 1, 1], [9, 9]));
