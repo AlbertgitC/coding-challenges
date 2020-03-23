@@ -8,8 +8,8 @@ function is_prime(num) {
         return false;
     };
 
-    for (let i = 2; i < num; i++) {
-        if (Number.isInteger(num / i)) {
+    for (let i = 2; i * i <= num; i++) {
+        if (num % i === 0) {
             return false;
         };
     };
@@ -32,9 +32,12 @@ function prime_finder(num) {
     return primes.length;
 }
 
-console.log(prime_finder(1));
-console.log(prime_finder(-1));
-console.log(prime_finder(0));
-console.log(prime_finder(2));
-console.log(prime_finder(7));
-console.log(prime_finder(10000));
+// console.log(prime_finder(1));
+// console.log(prime_finder(-1));
+// console.log(prime_finder(0));
+// console.log(prime_finder(2));
+// console.log(prime_finder(7));
+// console.log(prime_finder(10000));
+// console.log(prime_finder(1000000));
+
+// Implement RESTful API
