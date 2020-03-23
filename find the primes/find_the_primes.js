@@ -18,7 +18,23 @@ function is_prime(num) {
 }
 
 function prime_finder(num) {
-    
+    if (num < 2) {
+        return 0;
+    };
+
+    const primes = [];
+    for (let i = 2; i <= num; i++) {
+        if (is_prime(i)) {
+           primes.push(i);
+        };
+    };
+
+    return primes.length;
 }
 
-console.log(is_prime(17));
+console.log(prime_finder(1));
+console.log(prime_finder(-1));
+console.log(prime_finder(0));
+console.log(prime_finder(2));
+console.log(prime_finder(7));
+console.log(prime_finder(10000));
