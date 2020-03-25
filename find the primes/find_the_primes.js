@@ -8,6 +8,7 @@ function is_prime(num) {
         return false;
     };
 
+    // O(log N)
     for (let i = 2; i * i <= num; i++) {
         if (num % i === 0) {
             return false;
@@ -17,6 +18,8 @@ function is_prime(num) {
     return true;
 }
 
+
+// O(N*log N)
 function prime_finder(num) {
     if (num < 2) {
         return 0;
