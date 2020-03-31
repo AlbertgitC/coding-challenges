@@ -49,17 +49,42 @@ function three_q_marks(str) {
 }
 
 function str_regex(str) {
-    let re = /\d\?{3}\d/g;
-    console.log(str.match(re));
+    let re = /\d|\?/g;
+    let num_q = str.match(re).join("");
+    let re2 = /(?=(\d\?\?\?\d))./g;
+    let result = [];
+    let match;
+    while (match = re2.exec(num_q)) {
+        result.push(match[1]);
+    };
+    return result;
 }
 
-// console.log(three_q_marks("arrb6???4xxbl5???eee5"));
-// console.log(three_q_marks("acc?7??sss?3rr1??????5"));
-// console.log(three_q_marks("10???0???10"));
-// console.log(three_q_marks("5??aaaaaaaa?5?5"));
-// console.log(three_q_marks("9???1???9???1???9"));
-// console.log(three_q_marks("aa6?9"));
-// console.log(three_q_marks("8???2???9"));
-// console.log(three_q_marks("aa3??oiuqwer?7???2"));
+function three_q_marks2(str) {
+    let pairs = str_regex(str);
+    let ans = false;
 
-console.log(str_regex("arrb6???4xxbl5???eee5"));
+    if (pairs.length) {
+        for (let i = 0; i < pairs.length; i++) {
+            let first_num = parseInt(pairs[i][0]);
+            let second_num = parseInt(pairs[i][4]);
+            if (first_num + second_num != 10) {
+                return false;
+            } else {
+                ans = true;
+            };
+        };
+    }
+    return ans;
+}
+
+// console.log(three_q_marks2("arrb6???4xxbl5???eee5"));
+// console.log(three_q_marks2("acc?7??sss?3rr1??????5"));
+// console.log(three_q_marks2("10???0???10"));
+// console.log(three_q_marks2("5??aaaaaaaa?5?5"));
+// console.log(three_q_marks2("9???1???9???1???9"));
+// console.log(three_q_marks2("aa6?9"));
+// console.log(three_q_marks2("8???2???9"));
+// console.log(three_q_marks2("aa3??oiuqwer?7???2"));
+
+console.log(str_regex("acc?7??sss?3rr1??????5"));
