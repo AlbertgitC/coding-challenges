@@ -24,3 +24,38 @@ function smallestDifference(array1, array2) {
 
     return result;
 }
+
+function smallestDifference2(array1, array2) {
+    array1.sort((a, b) => { return a - b });
+    array2.sort((a, b) => { return a - b });
+
+    let smallestDifference = Infinity;
+    let current;
+    let result;
+
+    let idx1 = 0;
+    let idx2 = 0;
+
+    while (idx1 < array1.length && idx2 < array2.length) {
+        let num1 = array1[idx1];
+        let num2 = array2[idx2];
+        if (num1 > num2) {
+            current = num1 - num2;
+            idx2++;
+        } else if (num1 < num2) {
+            current = num2 - num1;
+            idx1++;
+        } else {
+            return [num1, num2];
+        };
+
+        if (current < smallestDifference) {
+            smallestDifference = current;
+            result = [num1, num2];
+        };
+    };
+
+    return result;
+}
+
+console.log(smallestDifference2([-1, 5, 10, 20, 3], [26, 134, 135, 15, 17]));
