@@ -11,5 +11,16 @@
 // output: [28, 26]
 
 function smallestDifference(array1, array2) {
-    
+    let smallestDifference = Infinity;
+    let result;
+    array1.forEach((num1, i) => {
+        array2.forEach((num2, j) => {
+            if (Math.abs(num1 - num2) < smallestDifference) {
+                smallestDifference = Math.abs(num1 - num2);
+                result = [array1[i], array2[j]];
+            };
+        });
+    });
+
+    return result;
 }
