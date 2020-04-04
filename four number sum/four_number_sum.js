@@ -10,6 +10,28 @@
 // targetSum = 16
 // output = [[7, 6, 4, -1], [7, 6, 1, 2]]
 
-function fourNumSum (arr1, sum) {
+function fourNumSum (arr1, targetSum) {
+    let result = [];
+    if (arr1.length < 4) return;
+    if (arr1.length === 4) {
+        let sum = arr1.reduce( (accumulator, num) => {
+            return accumulator + num; 
+        });
+        
+        if (sum === targetSum) {
+            return arr1;
+        } else { return; };
+    };
 
+    let currentNum = arr1.shift();
+    arr1.forEach((num, i) => {
+        let arr2 = arr1.slice(0);
+        arr2.splice(i, 1, currentNum);
+        let subRes = fourNumSum(arr2, targetSum);
+        if (subRes) { result.push(subRes); };
+    });
+
+    return result;
 }
+
+console.log(fourNumSum([7, 6, 4, -1, 1], 16));
