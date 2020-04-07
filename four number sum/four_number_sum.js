@@ -10,7 +10,7 @@
 // targetSum = 16
 // output = [[7, 6, 4, -1], [7, 6, 1, 2]]
 
-function fourNumSum (arr1, targetSum) {
+function fourNumSum(arr1, targetSum) {
     let result = [];
     if (arr1.length < 4) return;
     if (arr1.length === 4) {
@@ -56,5 +56,35 @@ function checkUnique(twoDArr) {
     return result;
 }
 
-console.log(fourNumSum([-10, -3, -5, 2, 15, -7, 28, -6, 12, 8, 11, 5], 20));
-console.log(fourNumSum([1, 2, 3, 4, 5], 100));
+function fourNumberSum(array, targetSum) {
+    let result = [];
+    let pairs = {};
+    array.forEach((num, i) => {
+        for (let j = i + 1; j < array.length; j++) {
+            let sum = num + array[j];
+            let diff = targetSum - sum;
+            if (diff in pairs) {
+                for (const pair of pairs[diff]) {
+                    result.push(pair.concat([num, array[j]]));
+                };
+            };
+        };
+
+        for (let k = 0; k < i; k++) {
+            let sum = num + array[k];
+            if (pairs[sum] === undefined) {
+                pairs[sum] = [[num, array[k]]];
+            } else {
+                pairs[sum].push([num, array[k]]);
+            };
+        };
+    });
+
+    return result;
+}
+
+// console.log(fourNumSum([-10, -3, -5, 2, 15, -7, 28, -6, 12, 8, 11, 5], 20));
+// console.log(fourNumSum([1, 2, 3, 4, 5], 100));
+
+console.log(fourNumberSum([-10, -3, -5, 2, 15, -7, 28, -6, 12, 8, 11, 5], 20));
+console.log(fourNumberSum([1, 2, 3, 4, 5], 100));
