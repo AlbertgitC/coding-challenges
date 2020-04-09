@@ -27,3 +27,33 @@ function backSort(array, idx, result) {
     };
     return backSort(array, idx - 1, result);
 }
+
+function subarraySort2(array) {
+    let smallest = Infinity;
+    let largest = -Infinity;
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < array[i - 1]) {
+            if (array[i] < smallest) smallest = array[i];
+            if (array[i - 1] > largest) largest = array[i - 1];
+        };
+    };
+
+    if (smallest === Infinity) return [-1, -1];
+
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+        if (smallest < array[i]) {
+            result.push(i);
+            break;
+        };
+    };
+
+    for (let i = array.length - 1; i > -1; i--) {
+        if (largest > array[i]) {
+            result.push(i);
+            break;
+        };
+    };
+    
+    return result;
+}
