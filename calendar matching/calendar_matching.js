@@ -31,7 +31,7 @@ function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meet
                 commonCal.push([start, end]);
             } else if (commonCal.length !== 0 && end > commonDB[0] && start < commonDB[1]) {
                 let lastBlock = commonCal[commonCal.length - 1];
-                if (start = lastBlock[1]) {
+                if (start - lastBlock[1] < meetingDuration) {
                     commonCal.pop();
                     commonCal.push([lastBlock[0], end]);
                 } else {
@@ -39,7 +39,27 @@ function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meet
                 };
             };
         };
-    }
+    };
+
+    if (calendar2.length) {
+        let checkIdx = 0;
+        for (let i = 0; i < calendar2.length; i++) {
+            let start = toNum(calendar2[i][0]);
+            let end = toNum(calendar2[i][1]);
+            if (i === 0 && start >= commonDB[1]) {
+                break;
+            } else if (i === calendar2.length - 1 && end <= commonDB[0]) {
+                break;
+            };
+            if (commonCal.length === 0 && end > commonDB[0] && start < commonDB[1]) {
+                commonCal.push([start, end]);
+            } else if (commonCal.length !== 0 && end > commonDB[0] && start < commonDB[1]) {
+                
+            };
+        };
+    };
+
+    console.log(commonCal);
 
 }
 
