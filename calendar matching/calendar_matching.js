@@ -43,15 +43,18 @@ function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meet
 
     if (calendar2.length) {
         let checkIdx = 0;
-        if (toNum(calendar2[0][0]) < commonDB[1] && toNum(calendar2[calendar2.length - 1][1]) > commonDB[0]) {
-            for (let i = 0; i < calendar2.length; i++) {
-                let start = toNum(calendar2[i][0]);
-                let end = toNum(calendar2[i][1]);
-                if (commonCal.length === 0 && end > commonDB[0] && start < commonDB[1]) {
-                    commonCal.push([start, end]);
-                } else if (commonCal.length !== 0 && end > commonDB[0] && start < commonDB[1]) {
-                    
-                };
+
+        for (let i = 0; i < calendar2.length; i++) {
+            let start = toNum(calendar2[i][0]);
+            let end = toNum(calendar2[i][1]);
+            if (start >= commonDB[1] || end <= commonDB[0]) {
+                continue;
+            };
+
+            if (commonCal.length === 0 && end > commonDB[0] && start < commonDB[1]) {
+                commonCal.push([start, end]);
+            } else if (commonCal.length !== 0 && end > commonDB[0] && start < commonDB[1]) {
+                
             };
         };
         
