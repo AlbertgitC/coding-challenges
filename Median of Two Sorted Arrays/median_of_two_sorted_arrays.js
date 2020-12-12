@@ -2,17 +2,18 @@
 return the median of the two sorted arrays. */
 
 var findMedianSortedArrays = function (nums1, nums2) {
-    const merged = [];
+    let merged = [];
     let curIdx1 = 0;
     let curIdx2 = 0;
     while (curIdx1 < nums1.length || curIdx2 < nums2.length) {
         let num1 = nums1[curIdx1];
         let num2 = nums2[curIdx2];
+
         if (num1 === undefined) {
-            merged.concat(nums2.slice(curIdx2));
+            merged = merged.concat(nums2.slice(curIdx2));
             break;
         } else if (num2 === undefined) {
-            merged.concat(nums1.slice(curIdx1));
+            merged = merged.concat(nums1.slice(curIdx1));
             break;
         };
 
@@ -24,7 +25,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
             curIdx1++;
         };
     };
-    console.log(merged);
+    
     let ans;
     if (merged.length % 2 === 0) {
         let mid = merged.length / 2;
