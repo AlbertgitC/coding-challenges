@@ -18,3 +18,17 @@ function longestPalindrome(str) {
     };
     return longest;
 };
+
+function longestPalindrome2(str) {
+    let longest = str[0];
+    for (let i = 0; i < str.length; i++) {
+        for (let j = str.length; j > i; j--) {
+            let subStr1 = str.slice(i, j);
+            let subStr2 = subStr1.split("").reverse().join("");
+            if (subStr1 === subStr2 && subStr1.length > longest.length) {
+                longest = subStr1;
+            };
+        };
+    };
+    return longest;
+};
