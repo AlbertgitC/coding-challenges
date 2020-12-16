@@ -2,7 +2,7 @@
 
 function convert(s, numRows) {
     if (numRows === 1) return s;
-    const matrix = new Array(numRows).fill(new Array());
+    const matrix = new Array(numRows).fill(0).map(() => ([]));
     let down = true;
     let curRow = 0;
     for (let i = 0; i < s.length; i++) {
@@ -30,3 +30,5 @@ function convert(s, numRows) {
     }
     return ans;
 };
+
+console.log(convert("PAYPALISHIRING", 3))
