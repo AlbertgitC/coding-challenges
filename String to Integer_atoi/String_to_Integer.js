@@ -6,10 +6,25 @@ function myAtoi(string) {
     let str = string.split(" ").join("");
     if (str[0] === "-" && nums.has(str[1])) {
         let numStr = "-" + getNumString(str.slice(1));
-        return Number(numStr);
-    } else if (nums.has(str[0])) {
-        let numStr = getNumString(str);
-        return Number(numStr);
+        let number = Number(numStr);
+        if (number < -(2 ** 31)) {
+            return -(2 ** 31);
+        } else {
+            return number;
+        };
+    } else if (nums.has(str[0]) || str[0] === "+" && nums.has(str[1])) {
+        let numStr;
+        if (str[0] === "+") {
+            numStr = getNumString(str.slice(1));
+        } else {
+            numStr = getNumString(str);
+        };
+        let number = Number(numStr);
+        if (number > (2 ** 31) - 1) {
+            return (2 ** 31) - 1;
+        } else {
+            return number;
+        };
     } else {
         return 0;
     };
