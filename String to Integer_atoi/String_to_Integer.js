@@ -3,7 +3,21 @@
 const nums = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
 
 function myAtoi(string) {
-    let str = string.split(" ").join("");
+    let str;
+    let nonSpaceIdx = undefined;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] !== " ") {
+            nonSpaceIdx = i;
+            break;
+        }
+    };
+
+    if (nonSpaceIdx === undefined) {
+        return 0;
+    } else {
+        str = string.slice(nonSpaceIdx);
+    };
+    
     if (str[0] === "-" && nums.has(str[1])) {
         let numStr = "-" + getNumString(str.slice(1));
         let number = Number(numStr);
