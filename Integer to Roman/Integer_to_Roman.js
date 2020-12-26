@@ -17,7 +17,7 @@ function intToRoman(num) {
     while (num > 0) {
         let curSet = sets[curDigitPos];
         let curDigit = num % 10;
-        if (curDigit < 4) {
+        if (0 < curDigit && curDigit < 4) {
             roman = lessThree(curSet[0], curDigit) + roman;
         } else if (curDigit === 4) {
             roman = curSet[0] + curSet[1] + roman;
@@ -42,4 +42,4 @@ function lessThree(sym, num) {
     return string;
 };
 
-console.log(intToRoman(1342))
+console.log(intToRoman(1345))
