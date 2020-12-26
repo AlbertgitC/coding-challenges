@@ -23,7 +23,7 @@ function intToRoman(num) {
             roman = curSet[0] + curSet[1] + roman;
         } else if (curDigit === 5) {
             roman = curSet[1] + roman;
-        } else if (curDigit < 9) {
+        } else if (5 < curDigit && curDigit < 9) {
             roman = curSet[1] + lessThree(curSet[0], curDigit - 5) + roman;
         } else if (curDigit === 9) {
             roman = curSet[0] + sets[curDigitPos + 1][0] + roman;
