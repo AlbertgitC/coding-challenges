@@ -15,9 +15,9 @@ function romanToInt(s) {
         let curChar = s[i];
         let nextChar = s[i + 1] ? s[i + 1] : "I";
         if (values[curChar] < values[nextChar]) {
-            value = value - values[curChar];
+            value -= values[curChar];
         } else {
-            value = value + values[curChar];
+            value += values[curChar];
         };
     };
 
