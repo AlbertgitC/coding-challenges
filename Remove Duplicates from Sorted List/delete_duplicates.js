@@ -11,29 +11,26 @@
  */
 
 function deleteDuplicates(head) {
-    let curVal = head.val;
     let curNote = head;
     let checkedNote = null;
     let newHead = null;
     let duplicated = false;
-    while (curNote.next) {
-        if (curVal !== curNote.next.val && !duplicated) {
+    while (curNote) {
+        let nextVal = curNote.next ? curNote.next.val : null;
+        if (curNote.val !== nextVal && !duplicated) {
             if (!newHead) newHead = curNote;
             checkedNote = curNote;
-            curVal = curNote.next.val;
             curNote = curNote.next;
-        } else if (curVal !== curNote.next.val && duplicated) {
+        } else if (curNote.val !== nextVal && duplicated) {
             duplicated = false;
             if (checkedNote) {
                 checkedNote.next = curNote.next;
             };
-            curVal = curNote.next.val;
             curNote = curNote.next;
         } else {
             duplicated = true;
             curNote = curNote.next;
         };
     };
-    if (duplicated) checkedNote.next = null;
     return newHead;
 };
