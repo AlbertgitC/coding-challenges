@@ -16,7 +16,7 @@ function deleteDuplicates(head) {
     let checkedNote = null;
     let newHead = null;
     let duplicated = false;
-    while (curNote) {
+    while (curNote.next) {
         if (curVal !== curNote.next.val && !duplicated) {
             if (!newHead) newHead = curNote;
             checkedNote = curNote;
@@ -34,5 +34,6 @@ function deleteDuplicates(head) {
             curNote = curNote.next;
         };
     };
+    if (duplicated) checkedNote.next = null;
     return newHead;
 };
