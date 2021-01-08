@@ -19,7 +19,7 @@ function lengthOfLongestSubstring(s) {
             occurredChar = {};
             occurredChar[s[startIdx]] = startIdx;
         } else if (endIdx === s.length - 1) {
-            maxLength = Math.max(maxLength, endIdx - startIdx);
+            maxLength = Math.max(maxLength, endIdx - startIdx + 1);
             break;
         } else {
             occurredChar[s[endIdx]] = endIdx;
