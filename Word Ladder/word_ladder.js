@@ -1,9 +1,21 @@
 function ladderLength(beginWord, endWord, wordList) {
     if (!wordList.includes(endWord)) return 0;
-    let min = [];
-    while (wordList.length > 0) {
-
+    let curList = wordList.slice(0);
+    let curCombo = [beginWord];
+    let curWord = beginWord;
+    for (let i = 0; i < curList.length; i++) {
+        if (checker(curWord, wordList[i]) && wordList[i] === endWord) {
+            curCombo.push(wordList[i]);
+            break;
+        } else if (checker(curWord, wordList[i])) {
+            curCombo.push(wordList[i]);
+            curWord = wordList[i];
+            curList.splice(i, 1);
+            i = 0;
+        };
     };
+    if (curCombo.includes(endWord)) return curCombo.length;
+    return 0;
 };
 
 function checker(str1, str2) {
