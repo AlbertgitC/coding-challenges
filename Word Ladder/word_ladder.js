@@ -1,20 +1,21 @@
 function ladderLength(beginWord, endWord, wordList) {
     if (!wordList.includes(endWord)) return 0;
-    let curList = wordList.slice(0);
-    let curCombo = [beginWord];
-    let curWord = beginWord;
-    for (let i = 0; i < curList.length; i++) {
-        if (checker(curWord, wordList[i]) && wordList[i] === endWord) {
-            curCombo.push(wordList[i]);
-            break;
-        } else if (checker(curWord, wordList[i])) {
-            curCombo.push(wordList[i]);
-            curWord = wordList[i];
-            curList.splice(i, 1);
-            i = 0;
+
+    let queue = [beginWord];
+    let distance = {};
+    distance[beginWord] = 0;
+
+    while (queue.length !== 0) {
+        let curWord = queue.shift();
+        if (curWord === endWord) return distance[curWord] + 1;
+        for (let word of wordList) {
+            if (checker(curWord, word) && !(word in distance)) {
+                queue.push(word);
+                distance[word] = distance[curWord] + 1;
+            };
         };
     };
-    if (curCombo.includes(endWord)) return curCombo.length;
+
     return 0;
 };
 
@@ -25,21 +26,4 @@ function checker(str1, str2) {
     };
     if (diff === 1) return true;
     return false;
-};
-
-function climb(word, list, endWord) {
-    let combos = [];
-    let match = [];
-    for (let i = 0; i < list.length; i++) {
-        if (checker(word, list[i])) match.push(list[i]);
-    };
-    if (match.includes(endWord)) return [endWord];
-    if (match.length === 0) return [];
-    for (let i = 0; i < match.length; i++) {
-        let newList = list.slice(0);
-        let index = list.indexOf(match[i]);
-        newList.splice(index, 1);
-        combos.push([match[i], climb(match[i], newList, endWord)]);
-    };
-    return combos;
 };
