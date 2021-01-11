@@ -1,4 +1,5 @@
 function merge(nums1, m, nums2, n) {
+    nums1.splice(m, n);
     let idx1 = 0;
     let idx2 = 0;
     while (idx2 < nums2.length) {
