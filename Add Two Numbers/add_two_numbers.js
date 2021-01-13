@@ -28,7 +28,7 @@ function addTwoNumbers(l1, l2) {
         if (node1 && node2) {
             let sum = node1.val + node2.val;
             if (carry) {
-                sum + 1;
+                sum++;
                 carry = false;
             };
             if (sum >= 10) {
@@ -40,14 +40,18 @@ function addTwoNumbers(l1, l2) {
             curNode = addNode(curNode, sum);
         } else if (node1 || node2) {
             let sum;
-            if (node1.val !== undefined) {
+            if (node1) {
                 sum = node1.val;
             } else {
                 sum = node2.val;
             };
             if (carry) {
-                sum + 1;
+                sum++;
                 carry = false;
+            };
+            if (sum >= 10) {
+                sum = sum % 10;
+                carry = true;
             };
             node1 = node1 ? node1.next : null;
             node2 = node2 ? node2.next : null;
