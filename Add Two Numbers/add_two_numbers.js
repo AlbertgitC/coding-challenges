@@ -12,20 +12,19 @@ function addTwoNumbers(l1, l2) {
     let node1 = l1;
     let node2 = l2;
     let carry = false;
-    while (node1 || node2 || carry) {
-        if (newList.val === undefined) {
-            let sum = node1.val + node2.val;
-            if (sum < 10) {
-                newList = new ListNode(sum);
-            } else {
-                newList = new ListNode(sum % 10);
-                carry = true;
-            };
-            node1 = node1.next;
-            node2 = node2.next;
-            curNode = newList;
-        };
 
+    let sum = node1.val + node2.val;
+    if (sum < 10) {
+        newList = new ListNode(sum);
+    } else {
+        newList = new ListNode(sum % 10);
+        carry = true;
+    };
+    node1 = node1.next;
+    node2 = node2.next;
+    curNode = newList;
+
+    while (node1 || node2 || carry) {
         if (node1 && node2) {
             let sum = node1.val + node2.val;
             if (carry) {
