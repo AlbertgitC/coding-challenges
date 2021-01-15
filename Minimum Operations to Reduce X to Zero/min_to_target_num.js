@@ -19,7 +19,11 @@ function minOperations(nums, x) {
             endIdx++;
         } else if (sum > diff) {
             sum -= nums[startIdx];
-            if (startIdx === endIdx) endIdx++;
+            if (startIdx === endIdx) {
+                endIdx++
+            } else {
+                sum -= nums[endIdx];
+            };
             startIdx++;
         } else {
             endIdx++;
