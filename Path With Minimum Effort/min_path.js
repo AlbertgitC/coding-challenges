@@ -1,5 +1,4 @@
 function minimumEffortPath(heights) {
-    const visited = new Set();
     const minEfforts = new Array(heights.length)
     for (let i = 0; i < minEfforts.length; i++) {
         const cols = new Array(heights[0].length);
@@ -11,21 +10,24 @@ function minimumEffortPath(heights) {
 
     minEfforts[0][0] = 0;
 
-    for (let row of heights) {
-        for (let col of row) {
-            if (visited.has(`${row},${col}`)) continue;
-            let curHeight = heights[row][col];
-            let paths = [[row - 1, col], [row + 1, col], [row, col + 1], [row, col - 1]];
-            for (let path of paths) {
-                let pathHeight = heights[path[0]][path[1]];
-                if (pathHeight !== undefined) {
-                    let effort = Math.abs(curHeight - pathHeight);
-                    minEfforts[path[0]][path[1]] = Math.min(effort, minEfforts[path[0]][path[1]]);
+    let que = [[0, 0]];
+
+    while (que.length > 0) {
+        let [ row, col ] = que.shift();
+        let curHeight = heights[row][col];
+        let paths = [[row - 1, col], [row + 1, col], [row, col + 1], [row, col - 1]];
+        for (let path of paths) {
+            let pathHeight = heights[path[0]] === undefined ? undefined : heights[path[0]][path[1]];
+            if (pathHeight !== undefined) {
+                let effort = Math.abs(curHeight - pathHeight);
+                let curMaxEffort = Math.max(effort, minEfforts[row][col]);
+                if (curMaxEffort < minEfforts[path[0]][path[1]]) {
+                    minEfforts[path[0]][path[1]] = curMaxEffort;
+                    que.push(path);
                 };
             };
-            visited.add(`${row},${col}`);
         };
     };
 
-    return minEfforts[-1][-1];
+    return minEfforts[minEfforts.length - 1][minEfforts[0].length - 1];
 };
